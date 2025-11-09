@@ -240,7 +240,7 @@ server: {
 ### 常见问题
 
 1. **向量数据库为空**  
-   运行 `python scripts/build_knowledge_base.py` 构建知识库
+   运行 `python backend/scripts/build_knowledge_base.py` 构建知识库
 
 2. **API连接失败**  
    检查 `.env` 文件中的API配置是否正确
