@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江苏旅游助手</title>
+    <!-- 高德地图API - 使用新的API密钥 -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=09a9138dc1458762c181a07c378ae1ad&plugin=AMap.Driving,AMap.Geocoder,AMap.PlaceSearch"></script>
+    <!-- 屏蔽高德地图Canvas警告的脚本 -->
+    <script>
+      // 过滤控制台中的高德地图Canvas性能警告
+      const originalWarn = console.warn;
+      const originalLog = console.log;
+      
+      console.warn = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('willReadFrequently') || 
+            message.includes('Canvas2D') || 
+            message.includes('getImageData')) {
+          return; // 忽略高德地图Canvas警告
+        }
+        originalWarn.apply(console, args);
+      };
+      
+      console.log = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('willReadFrequently') || 
+            message.includes('Canvas2D') || 
+            message.includes('getImageData')) {
+          return; // 忽略高德地图Canvas警告
+        }
+        originalLog.apply(console, args);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
